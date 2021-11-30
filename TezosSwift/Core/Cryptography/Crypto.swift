@@ -39,37 +39,37 @@ public class Crypto {
 		return self.tezosPublicKeyHash(from: publicKeyBytes)
 	}
 
-	/**
-     Check that a given address is valid public key hash address.
-   */
-	public static func validateAddress(address: String) -> Bool {
-		guard let decodedData = Data(base58Decoding: address) else {
-			return false
-		}
-		let decodedBytes = decodedData.bytes
-
-		// Check that the prefix is correct.
-		for (i, byte) in publicKeyHashPrefix.enumerated() {
-			if decodedBytes[i] != byte {
-				return false
-			}
-		}
-
-		// Check that checksum is correct.
-		let checksumStartIndex = decodedBytes.count - checksumLength
-		let addressWithoutChecksum = decodedBytes[0..<checksumStartIndex]
-		let checksum = decodedBytes[checksumStartIndex...]
-		guard let expectedChecksum = self.calculateChecksum(Array(addressWithoutChecksum)) else {
-			return false
-		}
-
-		for (i, byte) in checksum.enumerated() {
-			if expectedChecksum[i] != byte {
-				return false
-			}
-		}
-		return true
-	}
+//	/**
+//     Check that a given address is valid public key hash address.
+//   */
+//	public static func validateAddress(address: String) -> Bool {
+//		guard let decodedData = Data(base58Decoding: address) else {
+//			return false
+//		}
+//		let decodedBytes = decodedData.bytes
+//
+//		// Check that the prefix is correct.
+//		for (i, byte) in publicKeyHashPrefix.enumerated() {
+//			if decodedBytes[i] != byte {
+//				return false
+//			}
+//		}
+//
+//		// Check that checksum is correct.
+//		let checksumStartIndex = decodedBytes.count - checksumLength
+//		let addressWithoutChecksum = decodedBytes[0..<checksumStartIndex]
+//		let checksum = decodedBytes[checksumStartIndex...]
+//		guard let expectedChecksum = self.calculateChecksum(Array(addressWithoutChecksum)) else {
+//			return false
+//		}
+//
+//		for (i, byte) in checksum.enumerated() {
+//			if expectedChecksum[i] != byte {
+//				return false
+//			}
+//		}
+//		return true
+//	}
 
 	/**
      Verify that the given signature is a signed version of the given bytes by the secret key

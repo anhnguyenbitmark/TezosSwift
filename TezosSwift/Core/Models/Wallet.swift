@@ -22,38 +22,6 @@ public struct Wallet {
      */
 	public let mnemonic: String?
 
-	/**
-     Create a new wallet by generating a mnemonic and encrypted with an optional passphrase.
-
-     - Parameter passphrase: An optional passphrase used for encryption.
-   */
-	public init?(passphrase: String = "") {
-		guard let mnemonic = MnemonicUtil.generateMnemonic() else {
-			return nil
-		}
-		self.init(mnemonic: mnemonic, passphrase: passphrase)
-	}
-
-	/**
-     Create a new wallet with the given mnemonic and encrypted with an optional passphrase.
-
-     - Parameter mnemonic: A space delimited string of english mnemonic words from the BIP39 specification.
-     - Parameter passphrase: An optional passphrase used for encryption.
-   */
-	public init?(mnemonic: String, passphrase: String = "") {
-		guard let seedString = MnemonicUtil.seedString(from: mnemonic, passphrase: passphrase),
-			let keyPair = Crypto.keyPair(from: seedString),
-			let publicKey = Crypto.tezosPublicKey(from: keyPair.publicKey),
-			let secretKey = Crypto.tezosSecretKey(from: keyPair.secretKey),
-			let address = Crypto.tezosPublicKeyHash(from: keyPair.publicKey) else {
-				return nil
-		}
-
-		self.init(publicKey: publicKey,
-			secretKey: secretKey,
-			address: address,
-			mnemonic: mnemonic)
-	}
 
 	/**
      Create a wallet with a given secret key.

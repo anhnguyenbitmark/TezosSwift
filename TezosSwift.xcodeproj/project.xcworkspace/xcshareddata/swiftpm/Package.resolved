@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "BigInt",
+        "repositoryURL": "https://github.com/attaswift/BigInt",
+        "state": {
+          "branch": null,
+          "revision": "0ed110f7555c34ff468e72e1686e59721f2b0da6",
+          "version": "5.3.0"
+        }
+      },
+      {
+        "package": "Sodium",
+        "repositoryURL": "https://github.com/jedisct1/swift-sodium",
+        "state": {
+          "branch": null,
+          "revision": "4f9164a0a2c9a6a7ff53a2833d54a5c79c957342",
+          "version": "0.9.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

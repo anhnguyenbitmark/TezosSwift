@@ -222,7 +222,7 @@ extension UnkeyedDecodingContainer {
             return try (decode(T.self), nil)
         } else {
             let container = try unkeyedContainer.nestedContainer(keyedBy: StorageKeys.self)
-            let primaryType = try? container.decodeIfPresent(TezosPrimaryType.self, forKey: .prim).self
+            let primaryType = ((try? container.decodeIfPresent(TezosPrimaryType.self, forKey: .prim).self) as TezosPrimaryType??)
             switch primaryType {
             case .pair:
                 return (try decode(T.self), nil)

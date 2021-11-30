@@ -36,30 +36,30 @@ class CryptoTests: XCTestCase {
 		XCTAssertNil(publicKeyHash)
 	}
 
-	public func testValidateAddress() {
-		let validAddress = "tz1PnyUZjRTFdYbYcJFenMwZanXtVP17scPH"
-		let validOriginatedAddress = "KT1Agon3ARPS7U74UedWpR96j1CCbPCsSTsL"
-		let invalidAddress = "tz1PnyUZjRTFdYbYcJFenMwZanXtVP17scPh"
-		let publicKey = "edpkvESBNf3cbx7sb4CjyurMxFJjCkUVkunDMjsXD4Squoo5nJR4L4"
-		let nonBase58Address = "tz10ol1OLscph"
+//	public func testValidateAddress() {
+//		let validAddress = "tz1PnyUZjRTFdYbYcJFenMwZanXtVP17scPH"
+//		let validOriginatedAddress = "KT1Agon3ARPS7U74UedWpR96j1CCbPCsSTsL"
+//		let invalidAddress = "tz1PnyUZjRTFdYbYcJFenMwZanXtVP17scPh"
+//		let publicKey = "edpkvESBNf3cbx7sb4CjyurMxFJjCkUVkunDMjsXD4Squoo5nJR4L4"
+//		let nonBase58Address = "tz10ol1OLscph"
+//
+//		XCTAssertTrue(Crypto.validateAddress(address: validAddress))
+//		XCTAssertFalse(Crypto.validateAddress(address: validOriginatedAddress))
+//		XCTAssertFalse(Crypto.validateAddress(address: invalidAddress))
+//		XCTAssertFalse(Crypto.validateAddress(address: publicKey))
+//		XCTAssertFalse(Crypto.validateAddress(address: nonBase58Address))
+//	}
 
-		XCTAssertTrue(Crypto.validateAddress(address: validAddress))
-		XCTAssertFalse(Crypto.validateAddress(address: validOriginatedAddress))
-		XCTAssertFalse(Crypto.validateAddress(address: invalidAddress))
-		XCTAssertFalse(Crypto.validateAddress(address: publicKey))
-		XCTAssertFalse(Crypto.validateAddress(address: nonBase58Address))
-	}
-
-	public func testVerifyBytes() {
-		let fakeOperation = "123456"
-		let wallet = Wallet()!
-		let randomWallet = Wallet()!
-		let result = Crypto.signForgedOperation(operation: fakeOperation, secretKey: wallet.keys.secretKey)!
-
-		XCTAssertTrue(Crypto.verifyBytes(bytes: result.operationBytes, signature: result.signature, publicKey: wallet.keys.publicKey))
-		XCTAssertFalse(Crypto.verifyBytes(bytes: result.operationBytes, signature: result.signature, publicKey: randomWallet.keys.publicKey))
-		XCTAssertFalse(Crypto.verifyBytes(bytes: result.operationBytes, signature: [1, 2, 3], publicKey: wallet.keys.publicKey))
-	}
+//	public func testVerifyBytes() {
+//		let fakeOperation = "123456"
+//		let wallet = Wallet()!
+//		let randomWallet = Wallet()!
+//		let result = Crypto.signForgedOperation(operation: fakeOperation, secretKey: wallet.keys.secretKey)!
+//
+//		XCTAssertTrue(Crypto.verifyBytes(bytes: result.operationBytes, signature: result.signature, publicKey: wallet.keys.publicKey))
+//		XCTAssertFalse(Crypto.verifyBytes(bytes: result.operationBytes, signature: result.signature, publicKey: randomWallet.keys.publicKey))
+//		XCTAssertFalse(Crypto.verifyBytes(bytes: result.operationBytes, signature: [1, 2, 3], publicKey: wallet.keys.publicKey))
+//	}
 
 	public func testSignForgedOperation() {
 		let operation = "deadbeef"

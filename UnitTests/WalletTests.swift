@@ -19,56 +19,56 @@ class WalletTests: XCTestCase {
 
 
 	// Wallet generation with no parameters should never fail.
-    func testGenerateWallet() {
-		let wallet = Wallet()
-		XCTAssertNotNil(wallet)
-		XCTAssertNotNil(wallet?.mnemonic)
-
-		let walletWithPassphrase = Wallet(passphrase: passphrase)
-		XCTAssertNotNil(walletWithPassphrase)
-		XCTAssertNotNil(walletWithPassphrase?.mnemonic)
-	}
-
-    func testGenerateWalletMnemonicNoPassphrase() {
-		guard let wallet = Wallet(mnemonic: mnemonic) else {
-			XCTFail()
-			return
-		}
-
-		XCTAssertNotNil(wallet.mnemonic)
-		XCTAssertEqual(wallet.mnemonic!, mnemonic)
-		XCTAssertEqual(wallet.keys.publicKey, expectedPublicKeyNoPassphrase)
-		XCTAssertEqual(wallet.keys.secretKey, expectedSecretKeyNoPassphrase)
-		XCTAssertEqual(wallet.address, expectedPublicKeyHashNoPassphrase)
-	}
-
-    func testGenerateWalletMnemonicEmptyPassphrase() {
-		guard let wallet = Wallet(mnemonic: mnemonic, passphrase: "") else {
-			XCTFail()
-			return
-		}
-
-		// A wallet with an empty passphrase should be the same as a wallet with no passphrase.
-		XCTAssertNotNil(wallet.mnemonic)
-		XCTAssertEqual(wallet.mnemonic!, mnemonic)
-		XCTAssertEqual(wallet.keys.publicKey, expectedPublicKeyNoPassphrase)
-		XCTAssertEqual(wallet.keys.secretKey, expectedSecretKeyNoPassphrase)
-		XCTAssertEqual(wallet.address, expectedPublicKeyHashNoPassphrase)
-	}
-
-    func testGenerateWalletMnemonicWithPassphrase() {
-		guard let wallet = Wallet(mnemonic: mnemonic, passphrase: passphrase) else {
-			XCTFail()
-			return
-		}
-
-		// A wallet with an empty passphrase should be the same as a wallet with no passphrase.
-		XCTAssertNotNil(wallet.mnemonic)
-		XCTAssertEqual(wallet.mnemonic!, mnemonic)
-		XCTAssertEqual(wallet.keys.publicKey, expectedPublicKeyPassphrase)
-		XCTAssertEqual(wallet.keys.secretKey, expectedSecretKeyPassphrase)
-		XCTAssertEqual(wallet.address, expectedPublicKeyHashPassphrase)
-	}
+//    func testGenerateWallet() {
+//		let wallet = Wallet()
+//		XCTAssertNotNil(wallet)
+//		XCTAssertNotNil(wallet?.mnemonic)
+//
+//		let walletWithPassphrase = Wallet(passphrase: passphrase)
+//		XCTAssertNotNil(walletWithPassphrase)
+//		XCTAssertNotNil(walletWithPassphrase?.mnemonic)
+//	}
+//
+//    func testGenerateWalletMnemonicNoPassphrase() {
+//		guard let wallet = Wallet(mnemonic: mnemonic) else {
+//			XCTFail()
+//			return
+//		}
+//
+//		XCTAssertNotNil(wallet.mnemonic)
+//		XCTAssertEqual(wallet.mnemonic!, mnemonic)
+//		XCTAssertEqual(wallet.keys.publicKey, expectedPublicKeyNoPassphrase)
+//		XCTAssertEqual(wallet.keys.secretKey, expectedSecretKeyNoPassphrase)
+//		XCTAssertEqual(wallet.address, expectedPublicKeyHashNoPassphrase)
+//	}
+//
+//    func testGenerateWalletMnemonicEmptyPassphrase() {
+//		guard let wallet = Wallet(mnemonic: mnemonic, passphrase: "") else {
+//			XCTFail()
+//			return
+//		}
+//
+//		// A wallet with an empty passphrase should be the same as a wallet with no passphrase.
+//		XCTAssertNotNil(wallet.mnemonic)
+//		XCTAssertEqual(wallet.mnemonic!, mnemonic)
+//		XCTAssertEqual(wallet.keys.publicKey, expectedPublicKeyNoPassphrase)
+//		XCTAssertEqual(wallet.keys.secretKey, expectedSecretKeyNoPassphrase)
+//		XCTAssertEqual(wallet.address, expectedPublicKeyHashNoPassphrase)
+//	}
+//
+//    func testGenerateWalletMnemonicWithPassphrase() {
+//		guard let wallet = Wallet(mnemonic: mnemonic, passphrase: passphrase) else {
+//			XCTFail()
+//			return
+//		}
+//
+//		// A wallet with an empty passphrase should be the same as a wallet with no passphrase.
+//		XCTAssertNotNil(wallet.mnemonic)
+//		XCTAssertEqual(wallet.mnemonic!, mnemonic)
+//		XCTAssertEqual(wallet.keys.publicKey, expectedPublicKeyPassphrase)
+//		XCTAssertEqual(wallet.keys.secretKey, expectedSecretKeyPassphrase)
+//		XCTAssertEqual(wallet.address, expectedPublicKeyHashPassphrase)
+//	}
 
     func testGenerateWalletFromSecretKey() {
 		guard let wallet = Wallet(secretKey: expectedSecretKeyNoPassphrase) else {
